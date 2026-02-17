@@ -1,28 +1,31 @@
-# LINE + Google Login Plugin
+# LINE Login + Gmail Login Integration for WordPress
 
-This WordPress plugin adds both **Login with LINE** and **Login with Google (Gmail account)** buttons to the WordPress login page.
+ปลั๊กอินนี้เพิ่มการเข้าสู่ระบบด้วย **LINE** และ **Google/Gmail** ให้กับหน้าเข้าสู่ระบบของ WordPress
 
-## Features
-- LINE OAuth login
-- Google OAuth login (users can sign in with their Gmail/Google account)
-- Auto-create WordPress users on first social login
-- Reuse existing WordPress users by email for Google logins
+## ความสามารถหลัก
+- ปุ่ม Login with LINE และ Login with Google (Gmail)
+- รองรับ OAuth callback แยกสำหรับ LINE และ Google
+- สร้างผู้ใช้ WordPress อัตโนมัติเมื่อเข้าสู่ระบบครั้งแรก
+- จับคู่บัญชีเดิมจาก Google ด้วย `sub` และอีเมล
+- บันทึกค่า OAuth state แบบ transient เพื่อลดความเสี่ยง CSRF
 
-## Setup
-1. Copy `line-login.php` into your WordPress `wp-content/plugins` directory.
-2. Activate the **LINE + Google Login** plugin in wp-admin.
-3. Go to **Settings → LINE + Google Login**.
-4. Configure LINE:
+## ติดตั้ง
+1. คัดลอกไฟล์ `line-login.php` ไปที่ `wp-content/plugins/`
+2. เปิดใช้งานปลั๊กอิน **LINE + Gmail Login Integration** ใน wp-admin
+3. ไปที่เมนู **Settings → LINE + Gmail Login**
+4. ใส่ค่า LINE:
    - LINE Channel ID
    - LINE Channel Secret
-5. Configure Google:
+5. ใส่ค่า Google:
    - Google Client ID
    - Google Client Secret
 
-## OAuth Callback URLs
-Use these callback URLs in each provider console:
+## Callback URLs
+ตั้งค่า Redirect/Callback URL ในแต่ละ provider ดังนี้:
 
-- LINE callback URL: `https://your-site/?line-login-callback=1`
-- Google callback URL: `https://your-site/?google-login-callback=1`
+- LINE: `https://your-site.example/?line-login-callback=1`
+- Google: `https://your-site.example/?google-login-callback=1`
 
-After configuration, both login buttons will appear on the default WordPress login page.
+## หมายเหตุ
+- Google login ใช้บัญชี Gmail ได้โดยตรง
+- หากต้องการส่งกลับไป URL เดิมหลัง login สามารถแนบพารามิเตอร์ `redirect_to` ได้
